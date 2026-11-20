@@ -1,0 +1,789 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAYA SOPA | Makeup Portfolio</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #fff7fa;
+  color: #80566a;
+}
+
+/* NAVIGATION */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  padding: 15px 8px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  box-shadow: 0 3px 12px #e9c4d3;
+}
+
+nav a {
+  color: #b65d86;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+/* HOME */
+header {
+  min-height: 90vh;
+  background: linear-gradient(135deg,#f9dce9,#fff1f6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.home-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  max-width: 950px;
+}
+
+.home-text h1 {
+  font-size: clamp(40px,8vw,75px);
+  color: #b65d86;
+  letter-spacing: 3px;
+}
+
+.home-text p {
+  margin-top: 12px;
+  font-size: 17px;
+}
+
+.photo-frame {
+  width: 240px;
+  height: 300px;
+  border: 5px solid white;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #f7dce8;
+  box-shadow: 0 8px 25px #dba4bb;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.upload-btn {
+  display: inline-block;
+  background: #d987a9;
+  color: white;
+  padding: 11px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 14px;
+  font-size: 13px;
+  border: none;
+}
+
+.upload-btn:hover {
+  background: #b65d86;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* SECTION */
+section {
+  padding: 65px 8%;
+  text-align: center;
+  scroll-margin-top: 65px;
+}
+
+.section-title {
+  color: #b65d86;
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+/* ABOUT ME */
+.about-box,
+.work-box,
+.contact-box {
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 5px 20px #e9c4d3;
+  max-width: 900px;
+  margin: 0 auto 25px;
+  line-height: 1.9;
+  text-align: left;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.about-photo {
+  width: 200px;
+  height: 240px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #f8dce9;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* LEARNING AND SKILLS */
+.learning-grid,
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(210px,1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.learning-card,
+.skill-item {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 5px 18px #e9c4d3;
+  line-height: 1.7;
+  transition: .3s;
+}
+
+.learning-card:hover,
+.skill-item:hover {
+  transform: translateY(-6px);
+}
+
+.learning-card h3,
+.skill-item h3,
+.work-box h3 {
+  color: #b65d86;
+  margin-bottom: 12px;
+}
+
+/* WORKS */
+.process-list {
+  padding-left: 25px;
+  line-height: 2;
+}
+
+.process-list h4 {
+  color: #b65d86;
+  margin-top: 15px;
+}
+
+.tools-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.tools-list li {
+  background: #fff0f6;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+/* UPLOAD ARTS */
+.gallery-upload {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.gallery-note {
+  text-align: center;
+  font-size: 13px;
+  color: #a8758d;
+  margin-bottom: 18px;
+}
+
+/* GALERI PORTRAIT */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.photo-card {
+  background: #fff0f6;
+  padding: 10px;
+  border-radius: 17px;
+  min-width: 0;
+  box-shadow: 0 4px 12px #e9c4d355;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+}
+
+/* BAGIAN PENTING: FOTO SELALU PORTRAIT */
+.photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  height: auto;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 12px;
+}
+
+.photo-card button {
+  margin-top: 10px;
+  padding: 9px 14px;
+  width: 100%;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  background: #d987a9;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.photo-card button:hover {
+  background: #b65d86;
+}
+
+.empty-message {
+  grid-column: 1/-1;
+  text-align: center;
+  padding: 25px;
+  color: #b65d86;
+  background: #fff0f6;
+  border-radius: 15px;
+}
+
+/* CONTACT */
+.contact-box {
+  text-align: center;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  background: #f5d9e6;
+}
+
+/* MOBILE */
+@media(max-width:600px) {
+  nav {
+    gap: 10px;
+    padding: 13px 8px;
+  }
+
+  nav a {
+    font-size: 10px;
+  }
+
+  header {
+    min-height: 90vh;
+    padding: 50px 20px;
+  }
+
+  .home-content {
+    flex-direction: column;
+    gap: 22px;
+    text-align: center;
+  }
+
+  .home-text h1 {
+    font-size: clamp(34px,10vw,48px);
+    overflow-wrap: anywhere;
+  }
+
+  .home-text p {
+    font-size: 14px;
+  }
+
+  .photo-frame {
+    width: min(65vw,220px);
+    height: min(82vw,270px);
+  }
+
+  section {
+    padding: 50px 18px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-photo {
+    width: 180px;
+    height: 220px;
+  }
+
+  .about-box,
+  .work-box,
+  .contact-box {
+    padding: 20px;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px;
+  }
+
+  .photo-card {
+    padding: 7px;
+  }
+
+  .photo-card button {
+    font-size: 11px;
+    padding: 8px 5px;
+  }
+}
+
+@media(max-width:350px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HOME -->
+<header id="home">
+  <div class="home-content">
+
+    <div class="home-text">
+      <h1>MAYA SOPA</h1>
+      <p>My Makeup Portfolio 💗</p>
+      <p>Welcome to my little world of beauty!</p>
+    </div>
+
+    <div>
+      <div class="photo-frame">
+        <img id="homePhoto" alt="Foto Maya">
+      </div>
+
+      <label class="upload-btn">
+        🎀 Pilih Foto HOME
+        <input type="file" id="homeInput" accept="image/*">
+      </label>
+    </div>
+
+  </div>
+</header>
+
+<!-- NAVIGATION -->
+<nav>
+  <a href="#about">ABOUT ME</a>
+  <a href="#learning">WHAT I LEARNED</a>
+  <a href="#skills">MY SKILLS</a>
+  <a href="#works">MY WORKS</a>
+  <a href="#contact">CONTACT</a>
+</nav>
+
+<!-- ABOUT ME -->
+<section id="about">
+  <h2 class="section-title">ABOUT ME 🎀</h2>
+
+  <div class="about-box">
+    <div class="about-content">
+
+      <div class="about-photo">
+        <img id="aboutPhoto" alt="Foto About Me">
+      </div>
+
+      <div>
+        <p>
+          Saya adalah seorang pelajar yang masuk SMK di bidang fotografi.
+          Saat memasuki kelas 10, saya sangat tertarik dengan dunia makeup
+          dan mulai mendalaminya.
+        </p>
+
+        <br>
+
+        <p>
+          Seiring berjalannya waktu, saya semakin mendalami dunia makeup.
+          Awalnya, saya belajar merias wajah sendiri dan membiasakan diri
+          menggunakan makeup tipis-tipis sebelum bepergian.
+        </p>
+
+        <br>
+
+        <p>
+          Saat memasuki kelas 11 &amp; 12 DKV dengan jurusan fotografi,
+          di sinilah saya semakin meningkatkan kemampuan dan pengetahuan
+          saya tentang makeup.
+        </p>
+
+        <label class="upload-btn">
+          📸 Pilih Foto ABOUT ME
+          <input type="file" id="aboutInput" accept="image/*">
+        </label>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT I LEARNED -->
+<section id="learning">
+  <h2 class="section-title">WHAT I LEARNED ABOUT MAKEUP 🌷</h2>
+
+  <div class="learning-grid">
+
+    <div class="learning-card">
+      <h3>Dasar Make Up</h3>
+      <p>Mempelajari dasar-dasar makeup dan cara merias wajah dengan baik.</p>
+    </div>
+
+    <div class="learning-card">
+      <h3>Alat Make Up</h3>
+      <p>Mengenal berbagai alat dan produk makeup beserta kegunaannya.</p>
+    </div>
+
+    <div class="learning-card">
+      <h3>Tahap-Tahap Make Up</h3>
+      <p>Mempelajari urutan dan tahapan dalam proses merias wajah.</p>
+    </div>
+
+    <div class="learning-card">
+      <h3>Menyesuaikan Make Up dengan Jenis Kulit</h3>
+      <p>Belajar memilih produk dan teknik makeup sesuai kebutuhan jenis kulit.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- MY SKILLS -->
+<section id="skills">
+  <h2 class="section-title">MY SKILLS 💗</h2>
+
+  <div class="skills-grid">
+    <div class="skill-item">
+      <h3>Make Up Simple</h3>
+      ✨
+    </div>
+
+    <div class="skill-item">
+      <h3>Make Up Daily</h3>
+      🌷
+    </div>
+
+    <div class="skill-item">
+      <h3>Make Up Advance</h3>
+      🎀
+    </div>
+  </div>
+</section>
+
+<!-- MY WORKS -->
+<section id="works">
+  <h2 class="section-title">MY WORKS 🦋</h2>
+
+  <div class="work-box">
+    <h3>PROCESSES</h3>
+
+    <div class="process-list">
+
+      <h4>1. SKIN PREPARATION</h4>
+      <ol>
+        <li>Pembersih (Cleanser)</li>
+        <li>Pelembap (Moisturizer)</li>
+        <li>Sunscreen</li>
+        <li>Primer</li>
+        <li>Foundation</li>
+        <li>BB Cream</li>
+        <li>Concealer</li>
+      </ol>
+
+      <h4>2. MAKEUP APPLICATION</h4>
+      <ol>
+        <li>Bedak (Face Powder)</li>
+        <li>Pensil Alis (Eyebrow Pencil)</li>
+        <li>Eyeshadow</li>
+        <li>Eyeliner</li>
+        <li>Maskara (Mascara)</li>
+        <li>Blush On</li>
+        <li>Setting Spray</li>
+      </ol>
+
+    </div>
+  </div>
+
+  <!-- I WAS CREATED ARTS -->
+  <div class="work-box">
+
+    <h3>I WAS CREATED ARTS 🎨</h3>
+
+    <p class="gallery-note">
+      My Makeup Collection 💗
+      <br>
+      Tambahkan foto hasil karya makeup kamu di sini.
+    </p>
+
+    <div class="gallery-upload">
+      <label class="upload-btn">
+        📸 Tambahkan Foto Karya
+        <input type="file" id="artsInput" accept="image/*" multiple>
+      </label>
+    </div>
+
+    <div class="gallery" id="artsGallery">
+      <div class="empty-message">
+        🎀 Belum ada foto. Silakan tambahkan karya makeup kamu!
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MY MAKEUP TOOLS -->
+  <div class="work-box">
+    <h3>MY MAKEUP TOOLS 💄</h3>
+
+    <ul class="tools-list">
+      <li>BB Cream</li>
+      <li>Face Powder</li>
+      <li>Blush On</li>
+      <li>Eyeshadow</li>
+      <li>Lip Tint</li>
+    </ul>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2 class="section-title">CONTACT 💌</h2>
+
+  <div class="contact-box">
+    <p>Thank you for visiting my portfolio!</p>
+    <p>💗 MAYA SOPA 💗</p>
+    <p>Makeup is my little world of creativity.</p>
+  </div>
+</section>
+
+<footer>
+  © 2026 MAYA SOPA | My Makeup Portfolio 🎀
+</footer>
+
+<script>
+/* DATABASE FOTO */
+const DB_NAME = "MayaSopaPortfolio";
+const STORE_NAME = "photos";
+let db;
+
+function bukaDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, 1);
+
+    request.onupgradeneeded = function(event) {
+      const database = event.target.result;
+
+      if (!database.objectStoreNames.contains(STORE_NAME)) {
+        database.createObjectStore(STORE_NAME);
+      }
+    };
+
+    request.onsuccess = function() {
+      db = request.result;
+      resolve();
+    };
+
+    request.onerror = function() {
+      reject(request.error);
+    };
+  });
+}
+
+function simpanFoto(key, value) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, "readwrite");
+    transaction.objectStore(STORE_NAME).put(value, key);
+
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error);
+  });
+}
+
+function ambilFoto(key) {
+  return new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, "readonly");
+    const request = transaction.objectStore(STORE_NAME).get(key);
+
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+function bacaFile(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = () => reject(reader.error);
+
+    reader.readAsDataURL(file);
+  });
+}
+
+/* HOME DAN ABOUT ME */
+async function pasangUpload(inputId, imageId, key) {
+  const input = document.getElementById(inputId);
+  const img = document.getElementById(imageId);
+
+  const saved = await ambilFoto(key);
+
+  if (saved) img.src = saved;
+
+  input.addEventListener("change", async function() {
+    const file = this.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Silakan pilih file gambar.");
+      return;
+    }
+
+    try {
+      const src = await bacaFile(file);
+      img.src = src;
+      await simpanFoto(key, src);
+    } catch (error) {
+      alert("Foto gagal disimpan. Coba lagi.");
+    }
+
+    this.value = "";
+  });
+}
+
+/* GALERI KARYA */
+let arts = [];
+
+function renderGaleri() {
+  const gallery = document.getElementById("artsGallery");
+  gallery.innerHTML = "";
+
+  if (arts.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "empty-message";
+    empty.textContent = "🎀 Belum ada foto. Silakan tambahkan karya makeup kamu!";
+    gallery.appendChild(empty);
+    return;
+  }
+
+  arts.forEach((src, index) => {
+    const card = document.createElement("div");
+    card.className = "photo-card";
+
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = "Foto karya makeup portrait";
+
+    const button = document.createElement("button");
+    button.textContent = "Hapus Foto";
+
+    button.addEventListener("click", async function() {
+      arts.splice(index, 1);
+
+      try {
+        await simpanFoto("arts", arts);
+        renderGaleri();
+      } catch {
+        alert("Gagal menghapus foto.");
+      }
+    });
+
+    card.appendChild(img);
+    card.appendChild(button);
+    gallery.appendChild(card);
+  });
+}
+
+async function mulaiGaleri() {
+  arts = await ambilFoto("arts") || [];
+  renderGaleri();
+
+  document.getElementById("artsInput")
+    .addEventListener("change", async function() {
+      const files = Array.from(this.files);
+
+      for (const file of files) {
+        if (!file.type.startsWith("image/")) continue;
+
+        try {
+          const src = await bacaFile(file);
+          arts.push(src);
+        } catch {
+          alert("Ada foto yang gagal dibaca.");
+        }
+      }
+
+      try {
+        await simpanFoto("arts", arts);
+        renderGaleri();
+      } catch {
+        alert("Penyimpanan penuh. Coba tambahkan foto lebih sedikit.");
+        arts = await ambilFoto("arts") || [];
+        renderGaleri();
+      }
+
+      this.value = "";
+    });
+}
+
+/* MULAI WEBSITE */
+async function mulaiWebsite() {
+  try {
+    await bukaDatabase();
+
+    await pasangUpload("homeInput", "homePhoto", "home");
+    await pasangUpload("aboutInput", "aboutPhoto", "about");
+
+    await mulaiGaleri();
+
+  } catch (error) {
+    console.error(error);
+    alert("Penyimpanan foto tidak tersedia. Coba gunakan Chrome terbaru.");
+  }
+}
+
+mulaiWebsite();
+</script>
+
+</body>
+</html>
